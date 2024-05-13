@@ -49,9 +49,9 @@ public class FirstApiTest {
     @Test
     public void endToEndTest1(){
 
+//        RestAssured.useRelaxedHTTPSValidation();
         RestAssured.baseURI = "https://bookstore.toolsqa.com";
         RequestSpecification requestSpecification = RestAssured.given();
-
 
         Response response = requestSpecification.header("Content-Type","application/json")
                 .body("{\n" +
@@ -83,6 +83,8 @@ public class FirstApiTest {
          System.out.println(rbody.asString());
 
          JsonPath jpath  =  JsonPath.from(rbody.asString());
+//         JsonPath j =  new JsonPath(rbody.asString());
+
          String isbn = jpath.getString("books.findAll { it.pages == 234 }.isbn");
 
 //         List<String> stringfprbooks = jpath.get("$.books[?(@.pages ==234)].isbn");

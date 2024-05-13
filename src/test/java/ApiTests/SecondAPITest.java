@@ -20,14 +20,21 @@ public class SecondAPITest {
 //
 //        });
         RequestSpecification req = RestAssured.given();
-        Response res = req.body("").get();
+        req.pathParam("id",34);  // setting Path parameter
+        Response res = req.body("").get("/test/{id}"); //passing path param
 
         ResponseBody rb =  res.getBody();
-
         JsonPath js = JsonPath.from(res.asString());
-        js.get("books.text").;
 
+        RestAssured.baseURI = "";
+        RequestSpecification request  =  RestAssured.given().header("Content-Type","application-json");
 
+        Response  response =  request.body("").post("/path");
+
+        ResponseBody body = response.body();
+        JsonPath path = body.jsonPath();
+
+        path.get("").equals("");
 
 
 
